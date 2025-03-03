@@ -1,14 +1,12 @@
 
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { 
-  CalculatorIcon, 
-  TrendingUp, 
-  CalendarIcon, 
-  PiggyBankIcon,
-  ArrowRightIcon,
-  RefreshCwIcon
-} from "lucide-react";
+import { CalculatorIcon } from "lucide-react";
+import { ModeToggle } from "./calculator/ModeToggle";
+import { AmountControl } from "./calculator/AmountControl";
+import { DurationControl } from "./calculator/DurationControl";
+import { InterestRateControl } from "./calculator/InterestRateControl";
+import { ResultsSummary } from "./calculator/ResultsSummary";
+import { calculateLoanDetails } from "../utils/calculatorUtils";
 
 export type CalculatorMode = "borrow" | "lend";
 
@@ -24,25 +22,24 @@ export function Calculator({ initialMode = "borrow" }: CalculatorProps) {
   const [totalInterest, setTotalInterest] = useState<number>(0);
   const [totalAmount, setTotalAmount] = useState<number>(0);
 
-  const durationOptions = [
-    { value: 7, label: "7 jours" },
-    { value: 14, label: "14 jours" },
-    { value: 30, label: "30 jours" },
-    { value: 90, label: "90 jours" },
-    { value: 180, label: "180 jours" },
-  ];
+  // Reset calculator to default values
+  const resetCalculator = () => {
+    setAmount(1000);
+    setDuration(30);
+    setInterestRate(0.035);
+  };
 
   // Calculate interest and total based on inputs
   useEffect(() => {
-    // Simple interest calculation
-    const interest = amount * interestRate * (duration / 365);
-    setTotalInterest(parseFloat(interest.toFixed(2)));
+    const { totalInterest, totalAmount } = calculateLoanDetails(
+      amount,
+      duration,
+      interestRate,
+      mode
+    );
     
-    if (mode === "borrow") {
-      setTotalAmount(parseFloat((amount + interest).toFixed(2)));
-    } else {
-      setTotalAmount(parseFloat((amount + interest).toFixed(2)));
-    }
+    setTotalInterest(totalInterest);
+    setTotalAmount(totalAmount);
   }, [amount, duration, interestRate, mode]);
 
   return (
@@ -67,180 +64,37 @@ export function Calculator({ initialMode = "borrow" }: CalculatorProps) {
           </div>
 
           <div className="glass-card p-8 md:p-10 rounded-2xl shadow-glass-lg">
-            {/* Mode Toggle */}
-            <div className="flex justify-center mb-8">
-              <div className="inline-flex rounded-full p-1 bg-gray-100">
-                <button
-                  onClick={() => setMode("borrow")}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                    mode === "borrow" 
-                      ? "bg-white shadow-sm text-pi" 
-                      : "text-gray-500 hover:text-gray-700"
-                  }`}
-                >
-                  Emprunter
-                </button>
-                <button
-                  onClick={() => setMode("lend")}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                    mode === "lend" 
-                      ? "bg-white shadow-sm text-pi" 
-                      : "text-gray-500 hover:text-gray-700"
-                  }`}
-                >
-                  Prêter
-                </button>
-              </div>
-            </div>
+            <ModeToggle mode={mode} setMode={setMode} />
 
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-6">
-                <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <label className="text-sm font-medium flex items-center gap-1">
-                      <PiggyBankIcon size={16} className="text-pi" />
-                      {mode === "borrow" ? "Montant à emprunter" : "Montant à prêter"} (π)
-                    </label>
-                    <span className="text-sm text-gray-500">{amount} π</span>
-                  </div>
-                  <input
-                    type="range"
-                    min="100"
-                    max="10000"
-                    step="100"
-                    value={amount}
-                    onChange={(e) => setAmount(parseInt(e.target.value))}
-                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-pi"
-                  />
-                  <div className="flex justify-between text-xs text-gray-500">
-                    <span>100 π</span>
-                    <span>10 000 π</span>
-                  </div>
-                </div>
+                <AmountControl 
+                  amount={amount} 
+                  setAmount={setAmount} 
+                  mode={mode} 
+                />
 
-                <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <label className="text-sm font-medium flex items-center gap-1">
-                      <CalendarIcon size={16} className="text-pi" />
-                      Durée
-                    </label>
-                    <span className="text-sm text-gray-500">{duration} jours</span>
-                  </div>
-                  <select 
-                    value={duration} 
-                    onChange={(e) => setDuration(parseInt(e.target.value))}
-                    className="w-full rounded-lg px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-pi/50 bg-white"
-                  >
-                    {durationOptions.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                <DurationControl 
+                  duration={duration} 
+                  setDuration={setDuration} 
+                />
 
-                {mode === "lend" && (
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <label className="text-sm font-medium flex items-center gap-1">
-                        <TrendingUp size={16} className="text-pi" />
-                        Taux d'intérêt annuel
-                      </label>
-                      <span className="text-sm text-gray-500">{(interestRate * 100).toFixed(1)}%</span>
-                    </div>
-                    <input
-                      type="range"
-                      min="0.01"
-                      max="0.1"
-                      step="0.005"
-                      value={interestRate}
-                      onChange={(e) => setInterestRate(parseFloat(e.target.value))}
-                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-pi"
-                    />
-                    <div className="flex justify-between text-xs text-gray-500">
-                      <span>1%</span>
-                      <span>10%</span>
-                    </div>
-                  </div>
-                )}
-                
-                {mode === "borrow" && (
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <label className="text-sm font-medium flex items-center gap-1">
-                        <TrendingUp size={16} className="text-pi" />
-                        Taux d'intérêt annuel
-                      </label>
-                      <span className="text-sm text-gray-500">{(interestRate * 100).toFixed(1)}%</span>
-                    </div>
-                    <div className="w-full h-10 px-4 py-3 border border-gray-200 bg-gray-50 rounded-lg flex items-center justify-between">
-                      <span className="text-sm text-gray-500">Taux fixé par les prêteurs</span>
-                      <span className="text-sm font-medium">{(interestRate * 100).toFixed(1)}%</span>
-                    </div>
-                  </div>
-                )}
+                <InterestRateControl 
+                  interestRate={interestRate}
+                  setInterestRate={setInterestRate}
+                  mode={mode}
+                />
               </div>
 
-              <div className="bg-gray-50 p-6 rounded-xl flex flex-col">
-                <h3 className="text-lg font-medium mb-6">
-                  {mode === "borrow" ? "Résumé de l'emprunt" : "Résumé du prêt"}
-                </h3>
-                
-                <div className="space-y-4 mb-6 flex-grow">
-                  <div className="flex justify-between">
-                    <span className="text-gray-500">
-                      {mode === "borrow" ? "Montant demandé" : "Montant prêté"}
-                    </span>
-                    <span className="font-medium">{amount} π</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-500">Durée</span>
-                    <span className="font-medium">{duration} jours</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-500">Taux d'intérêt</span>
-                    <span className="font-medium">{(interestRate * 100).toFixed(1)}%</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-500">Intérêts</span>
-                    <span className="font-medium text-pi">{totalInterest} π</span>
-                  </div>
-                  <div className="pt-4 mt-4 border-t border-gray-200">
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium">
-                        {mode === "borrow" ? "Total à rembourser" : "Total à recevoir"}
-                      </span>
-                      <span className="text-xl font-bold text-pi">{totalAmount} π</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <Button className="w-full rounded-full bg-gradient-primary hover:opacity-90">
-                  {mode === "borrow" ? (
-                    <>
-                      Demander un prêt
-                      <ArrowRightIcon className="ml-2 h-4 w-4" />
-                    </>
-                  ) : (
-                    <>
-                      Prêter mes Pi
-                      <ArrowRightIcon className="ml-2 h-4 w-4" />
-                    </>
-                  )}
-                </Button>
-                
-                <button 
-                  className="mt-3 text-xs text-gray-500 flex items-center justify-center gap-1 hover:text-pi transition-colors"
-                  onClick={() => {
-                    setAmount(1000);
-                    setDuration(30);
-                    setInterestRate(0.035);
-                  }}
-                >
-                  <RefreshCwIcon size={12} />
-                  Réinitialiser
-                </button>
-              </div>
+              <ResultsSummary
+                mode={mode}
+                amount={amount}
+                duration={duration}
+                interestRate={interestRate}
+                totalInterest={totalInterest}
+                totalAmount={totalAmount}
+                resetCalculator={resetCalculator}
+              />
             </div>
           </div>
         </div>
