@@ -6,7 +6,11 @@ import { AmountControl } from "./calculator/AmountControl";
 import { DurationControl } from "./calculator/DurationControl";
 import { InterestRateControl } from "./calculator/InterestRateControl";
 import { ResultsSummary } from "./calculator/ResultsSummary";
-import { calculateLoanDetails } from "../utils/calculatorUtils";
+import { 
+  calculateLoanDetails, 
+  BORROWER_FIXED_INTEREST_RATE,
+  calculateLenderInterestRate
+} from "../utils/calculatorUtils";
 
 export type CalculatorMode = "borrow" | "lend";
 
@@ -18,15 +22,28 @@ export function Calculator({ initialMode = "borrow" }: CalculatorProps) {
   const [mode, setMode] = useState<CalculatorMode>(initialMode);
   const [amount, setAmount] = useState<number>(1000);
   const [duration, setDuration] = useState<number>(30);
-  const [interestRate, setInterestRate] = useState<number>(0.035);
+  const [interestRate, setInterestRate] = useState<number>(BORROWER_FIXED_INTEREST_RATE);
   const [totalInterest, setTotalInterest] = useState<number>(0);
   const [totalAmount, setTotalAmount] = useState<number>(0);
+
+  // Update interest rate when amount or mode changes
+  useEffect(() => {
+    if (mode === "borrow") {
+      setInterestRate(BORROWER_FIXED_INTEREST_RATE);
+    } else {
+      setInterestRate(calculateLenderInterestRate(amount));
+    }
+  }, [amount, mode]);
 
   // Reset calculator to default values
   const resetCalculator = () => {
     setAmount(1000);
     setDuration(30);
-    setInterestRate(0.035);
+    if (mode === "borrow") {
+      setInterestRate(BORROWER_FIXED_INTEREST_RATE);
+    } else {
+      setInterestRate(calculateLenderInterestRate(1000));
+    }
   };
 
   // Calculate interest and total based on inputs

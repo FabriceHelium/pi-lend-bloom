@@ -24,3 +24,23 @@ export const durationOptions = [
   { value: 90, label: "90 jours" },
   { value: 180, label: "180 jours" },
 ];
+
+// Fixed interest rate for borrowers (admin defined)
+export const BORROWER_FIXED_INTEREST_RATE = 0.035; // 3.5%
+
+// Calculate lender interest rate based on amount
+// The rate increases with amount up to 10% at 10000π
+export const calculateLenderInterestRate = (amount: number): number => {
+  // Minimum rate: 1% (0.01)
+  // Maximum rate: 10% (0.1)
+  const minRate = 0.01;
+  const maxRate = 0.1;
+  const minAmount = 100;
+  const maxAmount = 10000;
+  
+  // Linear scale calculation
+  const rate = minRate + ((amount - minAmount) / (maxAmount - minAmount)) * (maxRate - minRate);
+  
+  // Ensure rate stays within the valid range
+  return Math.min(Math.max(rate, minRate), maxRate);
+};

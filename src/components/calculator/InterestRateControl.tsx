@@ -1,5 +1,6 @@
 
 import { TrendingUp } from "lucide-react";
+import { BORROWER_FIXED_INTEREST_RATE } from "../../utils/calculatorUtils";
 
 interface InterestRateControlProps {
   interestRate: number;
@@ -23,18 +24,13 @@ export function InterestRateControl({
           </label>
           <span className="text-sm text-gray-500">{(interestRate * 100).toFixed(1)}%</span>
         </div>
-        <input
-          type="range"
-          min="0.01"
-          max="0.1"
-          step="0.005"
-          value={interestRate}
-          onChange={(e) => setInterestRate(parseFloat(e.target.value))}
-          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-pi"
-        />
+        <div className="w-full h-10 px-4 py-3 border border-gray-200 bg-gray-50 rounded-lg flex items-center justify-between">
+          <span className="text-sm text-gray-500">Taux basé sur le montant du prêt</span>
+          <span className="text-sm font-medium">{(interestRate * 100).toFixed(1)}%</span>
+        </div>
         <div className="flex justify-between text-xs text-gray-500">
-          <span>1%</span>
-          <span>10%</span>
+          <span>Min: 1%</span>
+          <span>Max: 10%</span>
         </div>
       </div>
     );
@@ -50,7 +46,7 @@ export function InterestRateControl({
         <span className="text-sm text-gray-500">{(interestRate * 100).toFixed(1)}%</span>
       </div>
       <div className="w-full h-10 px-4 py-3 border border-gray-200 bg-gray-50 rounded-lg flex items-center justify-between">
-        <span className="text-sm text-gray-500">Taux fixé par les prêteurs</span>
+        <span className="text-sm text-gray-500">Taux fixé par l'administrateur</span>
         <span className="text-sm font-medium">{(interestRate * 100).toFixed(1)}%</span>
       </div>
     </div>
