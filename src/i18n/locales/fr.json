@@ -1,0 +1,62 @@
+
+{
+  "app": {
+    "title": "Pi-Lend Bloom",
+    "subtitle": "Plateforme de Microcrédit pour l'Écosystème Pi Network"
+  },
+  "nav": {
+    "home": "Accueil",
+    "borrow": "Emprunter",
+    "lend": "Prêter",
+    "dashboard": "Tableau de Bord",
+    "login": "Se Connecter avec Pi",
+    "language": "Langue"
+  },
+  "hero": {
+    "title": "Prêtez et Empruntez des Tokens Pi en Toute Simplicité",
+    "subtitle": "Une plateforme de microcrédit décentralisée conçue spécifiquement pour l'écosystème Pi Network",
+    "cta_borrow": "Emprunter des Pi",
+    "cta_lend": "Prêter des Pi"
+  },
+  "calculator": {
+    "title": "Calculez votre emprunt Pi en quelques clics",
+    "title_lend": "Estimez vos gains en prêtant des Pi",
+    "subtitle": "Obtenez une estimation de votre prêt avec des taux d'intérêt transparents et compétitifs.",
+    "subtitle_lend": "Voyez combien vous pouvez gagner en prêtant vos tokens Pi à la communauté.",
+    "amount": "Montant",
+    "duration": "Durée",
+    "interest_rate": "Taux d'Intérêt",
+    "total_interest": "Intérêts Totaux",
+    "total_amount": "Montant Total",
+    "days": "jours",
+    "reset": "Réinitialiser",
+    "borrow_mode": "Emprunter",
+    "lend_mode": "Prêter"
+  },
+  "features": {
+    "title": "Découvrez les avantages de Pi-Lend",
+    "subtitle": "Notre plateforme offre une expérience complète pour les emprunteurs et les prêteurs",
+    "feature1_title": "Prêts Sécurisés",
+    "feature1_desc": "Toutes les transactions sont sécurisées par la blockchain Pi Network",
+    "feature2_title": "Taux Transparents",
+    "feature2_desc": "Des taux d'intérêt clairs et compétitifs pour tous les utilisateurs",
+    "feature3_title": "Sans Frais Cachés",
+    "feature3_desc": "Pas de frais cachés ou coûts supplémentaires pour les transactions"
+  },
+  "opportunities": {
+    "title": "Dernières Opportunités",
+    "subtitle": "Découvrez les offres de prêt et d'emprunt les plus récentes sur la plateforme",
+    "lending_title": "Opportunités de prêt",
+    "borrowing_title": "Opportunités d'emprunt",
+    "amount": "Montant",
+    "duration": "Durée",
+    "interest": "Intérêt",
+    "status": "Statut",
+    "collateral": "Garantie",
+    "days": "jours",
+    "open": "Ouvert",
+    "closed": "Fermé",
+    "action_lend": "Prêter",
+    "action_borrow": "Emprunter"
+  }
+}

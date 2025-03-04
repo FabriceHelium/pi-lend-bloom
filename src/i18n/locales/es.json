@@ -1,0 +1,62 @@
+
+{
+  "app": {
+    "title": "Pi-Lend Bloom",
+    "subtitle": "Plataforma de Microcrédito para el Ecosistema Pi Network"
+  },
+  "nav": {
+    "home": "Inicio",
+    "borrow": "Pedir Prestado",
+    "lend": "Prestar",
+    "dashboard": "Panel de Control",
+    "login": "Conectarse con Pi",
+    "language": "Idioma"
+  },
+  "hero": {
+    "title": "Presta y Pide Prestado Tokens Pi con Facilidad",
+    "subtitle": "Una plataforma de microcrédito descentralizada diseñada específicamente para el ecosistema Pi Network",
+    "cta_borrow": "Pedir Prestado Pi",
+    "cta_lend": "Prestar Pi"
+  },
+  "calculator": {
+    "title": "Calcula tu préstamo Pi en pocos clics",
+    "title_lend": "Estima tus ganancias prestando Pi",
+    "subtitle": "Obtén una estimación de tu préstamo con tasas de interés transparentes y competitivas.",
+    "subtitle_lend": "Mira cuánto puedes ganar prestando tus tokens Pi a la comunidad.",
+    "amount": "Monto",
+    "duration": "Duración",
+    "interest_rate": "Tasa de Interés",
+    "total_interest": "Interés Total",
+    "total_amount": "Monto Total",
+    "days": "días",
+    "reset": "Reiniciar",
+    "borrow_mode": "Pedir Prestado",
+    "lend_mode": "Prestar"
+  },
+  "features": {
+    "title": "Descubre las ventajas de Pi-Lend",
+    "subtitle": "Nuestra plataforma ofrece una experiencia completa para prestatarios y prestamistas",
+    "feature1_title": "Préstamos Seguros",
+    "feature1_desc": "Todas las transacciones están aseguradas por la blockchain Pi Network",
+    "feature2_title": "Tasas Transparentes",
+    "feature2_desc": "Tasas de interés claras y competitivas para todos los usuarios",
+    "feature3_title": "Sin Cargos Ocultos",
+    "feature3_desc": "Sin cargos ocultos o costos adicionales para las transacciones"
+  },
+  "opportunities": {
+    "title": "Últimas Oportunidades",
+    "subtitle": "Descubre las ofertas de préstamo y solicitudes más recientes en la plataforma",
+    "lending_title": "Oportunidades para prestar",
+    "borrowing_title": "Oportunidades para pedir prestado",
+    "amount": "Monto",
+    "duration": "Duración",
+    "interest": "Interés",
+    "status": "Estado",
+    "collateral": "Garantía",
+    "days": "días",
+    "open": "Abierto",
+    "closed": "Cerrado",
+    "action_lend": "Prestar",
+    "action_borrow": "Pedir"
+  }
+}

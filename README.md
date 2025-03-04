@@ -11,53 +11,98 @@ Pi-Lend est une plateforme de microcrédit conçue pour l'écosystème Pi Networ
 - TypeScript
 - Tailwind CSS
 - shadcn-ui
+- Pi Network SDK
+- i18next (internationalisation)
 - Capacitor (pour les applications mobiles)
 - Vite
 
+## État actuel du projet
+
+### Fonctionnalités implémentées
+- Interface utilisateur réactive et moderne
+- Calculateur de prêts et d'emprunts
+- Taux d'intérêt dynamique pour les prêteurs (1% à 10% selon le montant)
+- Taux d'intérêt fixe pour les emprunteurs (3.5%)
+- Affichage des opportunités de prêts et d'emprunts
+- Intégration du SDK Pi Network
+- Support multilingue (Français, Anglais, Espagnol, Hindi)
+
 ## Étapes restantes à réaliser
 
-### 1. Développement technique
+### 1. Intégration technique avec Pi Network
 
-- **Intégration avec Pi Network**
-  - Implémenter l'authentification via Pi Network SDK
-  - Intégrer les fonctionnalités de paiement Pi
+- **Authentification Pi Network**
+  - Finaliser l'authentification des utilisateurs via Pi Network
+  - Sécuriser les sessions utilisateurs
+  - Tester le flux d'authentification complet
+
+- **Système de paiement Pi**
+  - Implémenter les transactions réelles via le SDK Pi
+  - Mettre en place le système de paiement pour les prêts et remboursements
+  - Développer un système de suivi des transactions
   - Tester les transactions sur le testnet Pi
 
-- **Développement backend**
-  - Mettre en place l'infrastructure de base de données (Supabase recommandé)
-  - Développer les API pour gérer les prêts et les remboursements
-  - Implémenter les contrats intelligents pour automatiser les processus
+- **Enregistrement sur le Pi Developer Portal**
+  - Soumettre l'application au programme Pi Hackathon / Pioneer
+  - Suivre les directives pour l'approbation de l'application
+  - Obtenir les autorisations nécessaires pour les transactions de production
 
-- **Fonctionnalités principales à terminer**
-  - Système de gestion des utilisateurs (profil, historique, notation)
-  - Système de gestion des garanties pour les emprunts
-  - Notifications pour les échéances et les remboursements
-  - Tableaux de bord pour le suivi des prêts et emprunts
-  - Système de notation des emprunteurs
-  - Filtres avancés pour les opportunités de prêt/emprunt
+### 2. Développement backend
 
-- **Sécurité**
-  - Mettre en place un système KYC pour la conformité réglementaire
-  - Implémenter l'authentification à deux facteurs
-  - Audit de sécurité des contrats intelligents
+- **Infrastructure de base de données**
+  - Mettre en place la base de données pour stocker les informations utilisateurs et transactions
+  - Développer le système de gestion des prêts et remboursements
+  - Mettre en place l'API pour interagir avec la base de données
 
-### 2. Tests et validation
+- **Contrats intelligents**
+  - Développer les contrats intelligents pour automatiser les processus de prêt
+  - Mettre en place un système de garantie pour les emprunts
+  - Implémenter le mécanisme de liquidation des garanties en cas de défaut
 
-- Réaliser des tests unitaires et d'intégration
-- Organiser une phase bêta avec un groupe restreint d'utilisateurs
-- Collecter les retours et améliorer l'expérience utilisateur
-- Tests de charge et de performance
+### 3. Fonctionnalités principales à terminer
 
-### 3. Préparation au lancement
+- **Système de gestion des utilisateurs**
+  - Profils utilisateurs avec historique des transactions
+  - Système de notation pour les emprunteurs et prêteurs
+  - Tableau de bord utilisateur pour suivre les prêts et emprunts actifs
 
-- Finaliser la documentation technique
-- Préparer les ressources marketing
-- Élaborer une stratégie de lancement
-- Obtenir les autorisations réglementaires nécessaires
+- **Système de notifications**
+  - Alertes pour les échéances et remboursements
+  - Notifications pour les nouvelles opportunités de prêt/emprunt
+  - Rappels automatiques pour les paiements à venir
 
-### 4. Communication avec Pi Network
+- **Fonctionnalités avancées**
+  - Filtres et recherche avancée pour les opportunités
+  - Système de messagerie interne entre utilisateurs
+  - Statistiques et analytics pour les utilisateurs
 
-**Étapes pour présenter le projet à Pi Network :**
+### 4. Sécurité et conformité
+
+- **Audit de sécurité**
+  - Audit complet des contrats intelligents
+  - Test de pénétration de l'application
+  - Vérification des vulnérabilités potentielles
+
+- **Conformité réglementaire**
+  - Mise en place d'un système KYC (Know Your Customer)
+  - Conformité avec les réglementations financières locales
+  - Politique de confidentialité et conditions d'utilisation
+
+### 5. Tests et préparation au lancement
+
+- **Phase de test**
+  - Tests unitaires et d'intégration
+  - Tests utilisateurs avec un groupe bêta
+  - Tests de charge et de performance
+
+- **Préparation au lancement**
+  - Finalisation de la documentation technique et utilisateur
+  - Préparation de la stratégie marketing et de lancement
+  - Plan de déploiement progressif
+
+## Communication avec Pi Network
+
+### Étapes pour présenter le projet à Pi Network
 
 1. **Préparation du dossier de présentation**
    - Document détaillé expliquant la vision, les objectifs et le fonctionnement de Pi-Lend
@@ -67,7 +112,7 @@ Pi-Lend est une plateforme de microcrédit conçue pour l'écosystème Pi Networ
 2. **Soumission au programme Pi Hackathon / Pioneer**
    - Participer aux événements et hackathons organisés par Pi Network
    - Soumettre le projet via les canaux officiels
-   - [Pi Network Developer Portal](https://developers.minepi.com)
+   - Se référer au [Pi Network Developer Portal](https://developers.minepi.com)
 
 3. **Établissement de contact avec l'équipe Pi**
    - Contacter l'équipe via les canaux officiels
@@ -83,13 +128,6 @@ Pi-Lend est une plateforme de microcrédit conçue pour l'écosystème Pi Networ
    - Demander l'accès aux API de développement
    - Effectuer des tests d'intégration sur le testnet
    - Préparer un plan de déploiement progressif
-
-### 5. Itération et amélioration continue
-
-- Recueillir les commentaires des utilisateurs après le lancement
-- Mettre en œuvre des améliorations basées sur les retours
-- Développer de nouvelles fonctionnalités selon les besoins
-- Suivre les KPI et ajuster la stratégie en conséquence
 
 ## Installation et démarrage
 

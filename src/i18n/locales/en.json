@@ -1,0 +1,62 @@
+
+{
+  "app": {
+    "title": "Pi-Lend Bloom",
+    "subtitle": "Microcredit Platform for the Pi Network Ecosystem"
+  },
+  "nav": {
+    "home": "Home",
+    "borrow": "Borrow",
+    "lend": "Lend",
+    "dashboard": "Dashboard",
+    "login": "Login with Pi",
+    "language": "Language"
+  },
+  "hero": {
+    "title": "Lend and Borrow Pi Tokens with Ease",
+    "subtitle": "A decentralized microcredit platform designed specifically for the Pi Network ecosystem",
+    "cta_borrow": "Borrow Pi",
+    "cta_lend": "Lend Pi"
+  },
+  "calculator": {
+    "title": "Calculate your Pi loan in a few clicks",
+    "title_lend": "Estimate your earnings by lending Pi",
+    "subtitle": "Get an estimate of your loan with transparent and competitive interest rates.",
+    "subtitle_lend": "See how much you can earn by lending your Pi tokens to the community.",
+    "amount": "Amount",
+    "duration": "Duration",
+    "interest_rate": "Interest Rate",
+    "total_interest": "Total Interest",
+    "total_amount": "Total Amount",
+    "days": "days",
+    "reset": "Reset",
+    "borrow_mode": "Borrow",
+    "lend_mode": "Lend"
+  },
+  "features": {
+    "title": "Discover the benefits of Pi-Lend",
+    "subtitle": "Our platform offers a complete experience for borrowers and lenders",
+    "feature1_title": "Secure Loans",
+    "feature1_desc": "All transactions are secured by the Pi Network blockchain",
+    "feature2_title": "Transparent Rates",
+    "feature2_desc": "Clear and competitive interest rates for all users",
+    "feature3_title": "No Hidden Fees",
+    "feature3_desc": "No hidden fees or additional costs for transactions"
+  },
+  "opportunities": {
+    "title": "Latest Opportunities",
+    "subtitle": "Discover the most recent lending and borrowing offers on the platform",
+    "lending_title": "Lending opportunities",
+    "borrowing_title": "Borrowing opportunities",
+    "amount": "Amount",
+    "duration": "Duration",
+    "interest": "Interest",
+    "status": "Status",
+    "collateral": "Collateral",
+    "days": "days",
+    "open": "Open",
+    "closed": "Closed",
+    "action_lend": "Lend",
+    "action_borrow": "Borrow"
+  }
+}
