@@ -29,7 +29,11 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: "fr",
+    fallbackLng: "en",
+    detection: {
+      order: ['localStorage', 'navigator'],
+      caches: ['localStorage'],
+    },
     interpolation: {
       escapeValue: false // react already safes from xss
     }

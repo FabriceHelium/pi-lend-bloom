@@ -11,10 +11,10 @@ import {
 import { Globe } from "lucide-react";
 
 const languages = [
-  { code: "fr", name: "Français" },
-  { code: "en", name: "English" },
-  { code: "es", name: "Español" },
-  { code: "hi", name: "हिन्दी" },
+  { code: "fr", name: "Français", flag: "🇫🇷" },
+  { code: "en", name: "English", flag: "🇬🇧" },
+  { code: "es", name: "Español", flag: "🇪🇸" },
+  { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
 ];
 
 export function LanguageSelector() {
@@ -26,27 +26,27 @@ export function LanguageSelector() {
     setOpen(false);
   };
 
-  // Get current language name
+  // Get current language details
   const currentLanguage = languages.find(
     (lang) => lang.code === i18n.language
-  )?.name || languages[0].name;
+  ) || languages[0];
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm" className="gap-2">
-          <Globe size={16} />
-          <span className="hidden md:block">{currentLanguage}</span>
+          <span>{currentLanguage.flag}</span>
+          <span className="hidden md:block">{currentLanguage.name}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="bg-white">
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
             onClick={() => changeLanguage(lang.code)}
-            className="cursor-pointer"
+            className="cursor-pointer hover:bg-gray-100"
           >
-            {lang.name}
+            <span className="mr-2">{lang.flag}</span> {lang.name}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

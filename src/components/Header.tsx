@@ -3,11 +3,14 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useTranslation } from "react-i18next";
+import LanguageSelector from "./LanguageSelector";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,9 +21,9 @@ export function Header() {
   }, []);
 
   const navigation = [
-    { name: "Accueil", href: "#" },
-    { name: "Emprunter", href: "#borrow" },
-    { name: "Prêter", href: "#lend" },
+    { name: t("nav.home"), href: "#" },
+    { name: t("nav.borrow"), href: "#borrow" },
+    { name: t("nav.lend"), href: "#lend" },
     { name: "Comment ça marche", href: "#how-it-works" },
   ];
 
@@ -39,7 +42,7 @@ export function Header() {
               <div className="h-10 w-10 rounded-full bg-gradient-to-r from-pi to-pi-light flex items-center justify-center text-white font-bold text-xl mr-2">
                 π
               </div>
-              <span className="text-xl font-semibold">Pi-Lend</span>
+              <span className="text-xl font-semibold">{t("app.title")}</span>
             </a>
           </div>
 
@@ -57,8 +60,9 @@ export function Header() {
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
+            <LanguageSelector />
             <Button variant="outline" className="rounded-full">
-              Se connecter
+              {t("nav.login")}
             </Button>
             <Button className="rounded-full bg-gradient-primary hover:opacity-90">
               S'inscrire
@@ -80,7 +84,7 @@ export function Header() {
 
       {/* Mobile menu */}
       {isMobile && mobileMenuOpen && (
-        <div className="md:hidden bg-white shadow-lg absolute top-full left-0 right-0 border-t">
+        <div className="md:hidden bg-white shadow-lg absolute top-full left-0 right-0 border-t z-50">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navigation.map((item) => (
               <a
@@ -92,13 +96,16 @@ export function Header() {
                 {item.name}
               </a>
             ))}
-            <div className="flex flex-col space-y-2 px-3 py-3">
-              <Button variant="outline" className="w-full justify-center rounded-full">
-                Se connecter
-              </Button>
-              <Button className="w-full justify-center rounded-full bg-gradient-primary hover:opacity-90">
-                S'inscrire
-              </Button>
+            <div className="flex items-center justify-between px-3 py-3">
+              <LanguageSelector />
+              <div className="flex flex-col space-y-2 ml-2">
+                <Button variant="outline" className="w-full justify-center rounded-full">
+                  {t("nav.login")}
+                </Button>
+                <Button className="w-full justify-center rounded-full bg-gradient-primary hover:opacity-90">
+                  S'inscrire
+                </Button>
+              </div>
             </div>
           </div>
         </div>
