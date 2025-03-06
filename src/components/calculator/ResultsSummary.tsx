@@ -2,6 +2,7 @@
 import { ArrowRightIcon, RefreshCwIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CalculatorMode } from "../Calculator";
+import { useTranslation } from "react-i18next";
 
 interface ResultsSummaryProps {
   mode: CalculatorMode;
@@ -22,6 +23,8 @@ export function ResultsSummary({
   totalAmount,
   resetCalculator
 }: ResultsSummaryProps) {
+  const { t } = useTranslation();
+  
   return (
     <div className="bg-gray-50 p-6 rounded-xl flex flex-col">
       <h3 className="text-lg font-medium mb-6">
@@ -36,15 +39,15 @@ export function ResultsSummary({
           <span className="font-medium">{amount} π</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-gray-500">Durée</span>
-          <span className="font-medium">{duration} jours</span>
+          <span className="text-gray-500">{t("calculator.duration")}</span>
+          <span className="font-medium">{duration} {t("calculator.days")}</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-gray-500">Taux d'intérêt</span>
+          <span className="text-gray-500">{t("calculator.interest_rate")}</span>
           <span className="font-medium">{(interestRate * 100).toFixed(1)}%</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-gray-500">Intérêts</span>
+          <span className="text-gray-500">{t("calculator.total_interest")}</span>
           <span className="font-medium text-pi">{totalInterest} π</span>
         </div>
         <div className="pt-4 mt-4 border-t border-gray-200">
@@ -60,12 +63,12 @@ export function ResultsSummary({
       <Button className="w-full rounded-full bg-gradient-primary hover:opacity-90">
         {mode === "borrow" ? (
           <>
-            Demander un prêt
+            {t("calculator.borrow_mode")}
             <ArrowRightIcon className="ml-2 h-4 w-4" />
           </>
         ) : (
           <>
-            Prêter mes Pi
+            {t("calculator.lend_mode")}
             <ArrowRightIcon className="ml-2 h-4 w-4" />
           </>
         )}
@@ -76,8 +79,9 @@ export function ResultsSummary({
         onClick={resetCalculator}
       >
         <RefreshCwIcon size={12} />
-        Réinitialiser
+        {t("calculator.reset")}
       </button>
     </div>
   );
 }
+

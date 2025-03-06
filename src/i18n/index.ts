@@ -36,7 +36,11 @@ i18n
     },
     interpolation: {
       escapeValue: false // react already safes from xss
+    },
+    react: {
+      useSuspense: false // prevents issues with SSR
     }
   });
 
 export default i18n;
+

@@ -1,7 +1,10 @@
 
 import { Github, Twitter, Facebook, Instagram } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function Footer() {
+  const { t } = useTranslation();
+  
   return (
     <footer className="bg-gradient-to-b from-white to-gray-50 pt-12 pb-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,10 +14,10 @@ export function Footer() {
               <div className="h-10 w-10 rounded-full bg-gradient-to-r from-pi to-pi-light flex items-center justify-center text-white font-bold text-xl mr-2">
                 π
               </div>
-              <span className="text-xl font-semibold">Pi-Lend</span>
+              <span className="text-xl font-semibold">{t("app.title")}</span>
             </a>
             <p className="text-gray-600 mb-4">
-              Plateforme de microcrédit décentralisée pour l'écosystème Pi Network.
+              {t("app.subtitle")}
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-pi transition-colors">
@@ -65,7 +68,7 @@ export function Footer() {
         
         <div className="border-t border-gray-200 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm text-center md:text-left">
-            &copy; {new Date().getFullYear()} Pi-Lend. Tous droits réservés.
+            &copy; {new Date().getFullYear()} {t("app.title")}. Tous droits réservés.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-gray-500 hover:text-pi text-sm transition-colors">
@@ -85,3 +88,4 @@ export function Footer() {
 }
 
 export default Footer;
+

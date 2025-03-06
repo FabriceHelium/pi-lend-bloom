@@ -1,6 +1,7 @@
 
 import { CreditCard, Clock, User, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 export interface LoanCardProps {
   type: "offer" | "opportunity";
@@ -23,6 +24,7 @@ export function LoanCard({
   borrower,
   status = "open"
 }: LoanCardProps) {
+  const { t } = useTranslation();
   const isOffer = type === "offer";
   
   const statusColors = {
@@ -49,30 +51,30 @@ export function LoanCard({
         </div>
         {status && (
           <span className={`text-xs px-2 py-1 rounded-full ${statusColors[status]}`}>
-            {status === "open" ? "Disponible" : status === "active" ? "En cours" : "Terminé"}
+            {status === "open" ? t("opportunities.open") : status === "active" ? "En cours" : "Terminé"}
           </span>
         )}
       </div>
       
       <div className="space-y-3 mb-6">
         <div className="flex justify-between items-center py-2 border-b border-gray-100">
-          <span className="text-gray-500 text-sm">Montant</span>
+          <span className="text-gray-500 text-sm">{t("opportunities.amount")}</span>
           <span className="font-semibold">{amount} π</span>
         </div>
         <div className="flex justify-between items-center py-2 border-b border-gray-100">
-          <span className="text-gray-500 text-sm">Durée</span>
+          <span className="text-gray-500 text-sm">{t("opportunities.duration")}</span>
           <div className="flex items-center">
             <Clock size={14} className="text-gray-400 mr-1" />
-            <span className="font-semibold">{duration} jours</span>
+            <span className="font-semibold">{duration} {t("opportunities.days")}</span>
           </div>
         </div>
         <div className="flex justify-between items-center py-2 border-b border-gray-100">
-          <span className="text-gray-500 text-sm">Taux d'intérêt</span>
+          <span className="text-gray-500 text-sm">{t("opportunities.interest")}</span>
           <span className="font-semibold text-pi">{(interestRate * 100).toFixed(1)}%</span>
         </div>
         {collateralRequired && (
           <div className="flex justify-between items-center py-2 border-b border-gray-100">
-            <span className="text-gray-500 text-sm">Garantie requise</span>
+            <span className="text-gray-500 text-sm">{t("opportunities.collateral")}</span>
             <span className="font-semibold">{collateralRequired} π</span>
           </div>
         )}
@@ -90,7 +92,7 @@ export function LoanCard({
       <Button 
         className="w-full justify-between rounded-lg bg-gradient-primary hover:opacity-90"
       >
-        {isOffer ? "Emprunter maintenant" : "Voir les détails"}
+        {isOffer ? t("opportunities.action_borrow") : "Voir les détails"}
         <ChevronRight size={16} />
       </Button>
     </div>
@@ -98,3 +100,4 @@ export function LoanCard({
 }
 
 export default LoanCard;
+

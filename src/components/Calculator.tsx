@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { CalculatorIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { ModeToggle } from "./calculator/ModeToggle";
 import { AmountControl } from "./calculator/AmountControl";
 import { DurationControl } from "./calculator/DurationControl";
@@ -19,6 +20,7 @@ interface CalculatorProps {
 }
 
 export function Calculator({ initialMode = "borrow" }: CalculatorProps) {
+  const { t } = useTranslation();
   const [mode, setMode] = useState<CalculatorMode>(initialMode);
   const [amount, setAmount] = useState<number>(1000);
   const [duration, setDuration] = useState<number>(30);
@@ -66,17 +68,17 @@ export function Calculator({ initialMode = "borrow" }: CalculatorProps) {
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center gap-2 px-3 py-1 bg-accent text-accent-foreground rounded-full text-sm font-medium mb-3">
               <CalculatorIcon size={14} />
-              <span>Simulateur Pi-Lend</span>
+              <span>{t("calculator.title")}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               {mode === "borrow" 
-                ? "Calculez votre emprunt Pi en quelques clics" 
-                : "Estimez vos gains en prêtant des Pi"}
+                ? t("calculator.title") 
+                : t("calculator.title_lend")}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               {mode === "borrow" 
-                ? "Obtenez une estimation de votre prêt avec des taux d'intérêt transparents et compétitifs." 
-                : "Voyez combien vous pouvez gagner en prêtant vos tokens Pi à la communauté."}
+                ? t("calculator.subtitle") 
+                : t("calculator.subtitle_lend")}
             </p>
           </div>
 
@@ -121,3 +123,4 @@ export function Calculator({ initialMode = "borrow" }: CalculatorProps) {
 }
 
 export default Calculator;
+

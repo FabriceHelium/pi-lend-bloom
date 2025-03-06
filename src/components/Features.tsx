@@ -1,22 +1,25 @@
 
 import { Shield, Zap, TrendingUp, LineChart, Users, Clock } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function Features() {
+  const { t } = useTranslation();
+  
   const features = [
     {
       icon: Shield,
-      title: "Sécurité Maximale",
-      description: "Protection de vos actifs grâce à la technologie blockchain et aux contrats intelligents."
+      title: t("features.feature1_title"),
+      description: t("features.feature1_desc")
     },
     {
       icon: Zap,
-      title: "Rapidité d'Exécution",
-      description: "Obtention de fonds rapide avec une validation automatisée des prêts via la blockchain."
+      title: t("features.feature2_title"),
+      description: t("features.feature2_desc")
     },
     {
       icon: TrendingUp,
-      title: "Taux Compétitifs",
-      description: "Bénéficiez de taux d'intérêt bas pour les emprunteurs et attractifs pour les prêteurs."
+      title: t("features.feature3_title"),
+      description: t("features.feature3_desc")
     },
     {
       icon: LineChart,
@@ -40,10 +43,10 @@ export function Features() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Une Plateforme <span className="text-gradient">Innovante</span> pour l'Écosystème Pi
+            {t("features.title")} <span className="text-gradient">{t("features.subtitle")}</span>
           </h2>
           <p className="text-lg text-gray-600">
-            Découvrez les avantages qui font de Pi-Lend la référence en matière de microcrédit décentralisé
+            {t("features.subtitle")}
           </p>
         </div>
 
@@ -68,3 +71,4 @@ export function Features() {
 }
 
 export default Features;
+
